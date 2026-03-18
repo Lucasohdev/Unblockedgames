@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "echo 'No linting configured for JS'"
+    "lint": "echo 'No linting needed for static site'"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

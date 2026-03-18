@@ -1,0 +1,453 @@
+:root {
+    --bg: #0a0a0a;
+    --card-bg: #151515;
+    --accent: #10b981;
+    --text: #f4f4f5;
+    --text-muted: #a1a1aa;
+    --border: rgba(255, 255, 255, 0.05);
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Header */
+header {
+    height: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo i {
+    background: var(--accent);
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+.logo span {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: -1px;
+    font-size: 1.2rem;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 400px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Hero */
+.hero {
+    height: 300px;
+    margin: 30px 0;
+    border-radius: 24px;
+    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+    border: 1px solid var(--border);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, black, transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: var(--text-muted);
+    max-width: 500px;
+}
+
+/* Game Player */
+.game-player {
+    margin-bottom: 40px;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.player-header {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+}
+
+.player-header h2 {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.player-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.player-controls button {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--text-muted);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.player-controls button:hover {
+    background: var(--accent);
+    color: black;
+}
+
+.iframe-container {
+    aspect-ratio: 16/9;
+    background: black;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.game-info {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-top: none;
+}
+
+.info-text h3 {
+    margin-bottom: 10px;
+}
+
+.info-text p {
+    color: var(--text-muted);
+    max-width: 600px;
+}
+
+.game-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.stat .value {
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.value.live {
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Grid */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.accent {
+    width: 6px;
+    height: 30px;
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+}
+
+.thumb-container {
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+}
+
+.thumb-container img {
+    width: 100%;
+    height: 100%;
+    object-cover: cover;
+    transition: transform 0.5s;
+}
+
+.game-card:hover img {
+    transform: scale(1.1);
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.game-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-overlay span {
+    background: var(--accent);
+    color: black;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.game-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.game-card p {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Footer */
+footer {
+    margin-top: 80px;
+    padding: 60px 0;
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.5;
+}
+
+.footer-logo i {
+    font-size: 1.2rem;
+}
+
+.footer-logo span {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.footer-content p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-bar {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

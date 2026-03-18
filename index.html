@@ -1,13 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.jsx"></script>
-  </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Games | Unblocked</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo" id="logo-btn">
+                <i class="fas fa-gamepad"></i>
+                <span>Nexus Games</span>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search games...">
+            </div>
+            <nav>
+                <a href="#">Popular</a>
+                <a href="#">New</a>
+            </nav>
+        </div>
+    </header>
 
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Level Up Your Break</h1>
+                <p>The ultimate collection of unblocked games. Instant access, zero restrictions.</p>
+            </div>
+        </section>
+
+        <!-- Game Player (Hidden by default) -->
+        <section id="game-player" class="game-player hidden">
+            <div class="player-header">
+                <h2 id="current-game-title">Game Title</h2>
+                <div class="player-controls">
+                    <button id="fullscreen-btn"><i class="fas fa-expand"></i></button>
+                    <button id="close-btn"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe id="game-frame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="game-info">
+                <div class="info-text">
+                    <h3>About this game</h3>
+                    <p id="game-description">Play unblocked on Nexus Games. Instant browser play, no downloads required.</p>
+                </div>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="label">Players</span>
+                        <span class="value">1.2k+</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Status</span>
+                        <span class="value live">Live</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Grid -->
+        <section id="games-section">
+            <div class="section-header">
+                <h2><span class="accent"></span> All Games</h2>
+                <div class="filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Action</button>
+                    <button class="filter-btn">Puzzle</button>
+                </div>
+            </div>
+            <div class="games-grid" id="games-grid">
+                <!-- Games will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-gamepad"></i>
+                <span>Nexus Games</span>
+            </div>
+            <p>© 2026 Nexus Games • No AI • Pure Gaming</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
