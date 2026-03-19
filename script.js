@@ -29,23 +29,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="thumb-container">
                     <img src="${game.thumbnail}" alt="${game.title}" referrerPolicy="no-referrer">
                     <div class="play-overlay">
-                        <span>Play Now</span>
+                        <div class="overlay-buttons">
+                            <button class="overlay-play-btn">Play Now</button>
+                            <button class="overlay-fs-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                        </div>
                     </div>
                 </div>
                 <h3>${game.title}</h3>
                 <p>Unblocked • Web</p>
             `;
-            card.addEventListener('click', () => openGame(game));
+            
+            // Main card click opens game normally
+            card.addEventListener('click', (e) => {
+                // If the fullscreen button was clicked, don't trigger the card's main click
+                if (e.target.closest('.overlay-fs-btn')) return;
+                openGame(game);
+            });
+
+            // Fullscreen button click opens game and triggers fullscreen
+            const fsBtn = card.querySelector('.overlay-fs-btn');
+            fsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openGame(game, true);
+            });
+
             gamesGrid.appendChild(card);
         });
     }
 
-    function openGame(game) {
+    function openGame(game, autoFullscreen = false) {
         gameFrame.src = game.iframeUrl;
         currentGameTitle.textContent = game.title;
         gamePlayer.classList.remove('hidden');
         hero.classList.add('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (autoFullscreen) {
+            // Small delay to ensure iframe is loaded/visible before requesting fullscreen
+            setTimeout(() => {
+                triggerFullscreen();
+            }, 100);
+        }
+    }
+
+    function triggerFullscreen() {
+        if (gameFrame.requestFullscreen) {
+            gameFrame.requestFullscreen();
+        } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
+            gameFrame.webkitRequestFullscreen();
+        } else if (gameFrame.msRequestFullscreen) { /* IE11 */
+            gameFrame.msRequestFullscreen();
+        }
     }
 
     function closeGame() {
@@ -66,13 +100,5 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', closeGame);
     logoBtn.addEventListener('click', closeGame);
 
-    fullscreenBtn.addEventListener('click', () => {
-        if (gameFrame.requestFullscreen) {
-            gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
-            gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) { /* IE11 */
-            gameFrame.msRequestFullscreen();
-        }
-    });
+    fullscreenBtn.addEventListener('click', triggerFullscreen);
 });
