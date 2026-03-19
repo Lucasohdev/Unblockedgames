@@ -216,6 +216,27 @@ nav a:hover {
     height: 100%;
 }
 
+/* Fullscreen styles for the player */
+#game-player:fullscreen {
+    padding: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+}
+
+#game-player:fullscreen .player-header {
+    border-radius: 0;
+}
+
+#game-player:fullscreen .iframe-container {
+    flex: 1;
+    aspect-ratio: auto;
+}
+
+#game-player:fullscreen .game-info {
+    display: none;
+}
+
 .game-info {
     background: var(--card-bg);
     padding: 30px;

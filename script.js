@@ -73,14 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function triggerFullscreen() {
-        if (gameFrame.requestFullscreen) {
-            gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) { /* Safari */
-            gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) { /* IE11 */
-            gameFrame.msRequestFullscreen();
+        const player = document.getElementById('game-player');
+        if (!document.fullscreenElement) {
+            if (player.requestFullscreen) {
+                player.requestFullscreen();
+            } else if (player.webkitRequestFullscreen) {
+                player.webkitRequestFullscreen();
+            } else if (player.msRequestFullscreen) {
+                player.msRequestFullscreen();
+            }
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
         }
     }
+
+    // Update button icon when fullscreen changes (e.g. via Esc key)
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        } else {
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        }
+    });
 
     function closeGame() {
         gamePlayer.classList.add('hidden');

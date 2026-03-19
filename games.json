@@ -10,5 +10,23 @@
     "title": "Escape Car",
     "thumbnail": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=400",
     "iframeUrl": "https://unblocked-games.s3.amazonaws.com/escape-car.html"
+  },
+  {
+    "id": "stack-fire-ball",
+    "title": "Stack Fire Ball",
+    "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=400",
+    "iframeUrl": "https://www.onlinegames.io/games/2021/unity/stack-fire-ball/index.html"
+  },
+  {
+    "id": "nova-craft",
+    "title": "Nova Craft",
+    "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&q=80&w=400",
+    "iframeUrl": "https://cloud.onlinegames.io/games/2024/more2/nova-craft/index.html"
+  },
+  {
+    "id": "dublix",
+    "title": "Dublix",
+    "thumbnail": "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=400",
+    "iframeUrl": "https://cloud.onlinegames.io/games/2025/unity4/dublix/game-og.html"
   }
 ]
