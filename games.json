@@ -3,48 +3,64 @@
     "id": "tap-tap-shots",
     "title": "Tap Tap Shots",
     "thumbnail": "https://play-lh.googleusercontent.com/Djkwd3IOVAe8Aw9qCSLbawZaq1NjcOaFzfm702X-O2GtB4fHWyb6WV9R2nh_92icY83M",
-    "iframeUrl": "https://unblocked-games.s3.amazonaws.com/games/2023/q/1/tap-tap-shots/index.html"
+    "iframeUrl": "https://unblocked-games.s3.amazonaws.com/games/2023/q/1/tap-tap-shots/index.html",
+    "description": "Tap Tap Shots is an addictive endless basketball game where you tap to jump and score. Time your shots perfectly to keep the streak going and reach high scores!",
+    "tags": ["sports", "basketball", "arcade"]
   },
   {
     "id": "escape-car",
     "title": "Escape Car",
     "thumbnail": "https://www.onlinegames.io/media/posts/1000/responsive/Escape-Car-lg.jpg",
-    "iframeUrl": "https://unblocked-games.s3.amazonaws.com/escape-car.html"
+    "iframeUrl": "https://unblocked-games.s3.amazonaws.com/escape-car.html",
+    "description": "Navigate through traffic and obstacles in this high-speed escape game. Test your reflexes as you dodge police and other cars to make your getaway!",
+    "tags": ["driving", "action", "escape"]
   },
   {
     "id": "stack-fire-ball",
     "title": "Stack Fire Ball",
     "thumbnail": "https://www.onlinegames.io/media/posts/184/responsive/Stack-Fire-Ball-Game-lg.jpg",
-    "iframeUrl": "https://www.onlinegames.io/games/2021/unity/stack-fire-ball/index.html"
+    "iframeUrl": "https://www.onlinegames.io/games/2021/unity/stack-fire-ball/index.html",
+    "description": "Smash through colorful platforms with your fire ball. Avoid the black obstacles and reach the bottom of the tower in this satisfying arcade game.",
+    "tags": ["arcade", "physics", "casual"]
   },
   {
     "id": "nova-craft",
     "title": "Nova Craft",
     "thumbnail": "https://www.onlinegames.io/media/posts/841/responsive/Nova-Craft-lg.jpg",
-    "iframeUrl": "https://cloud.onlinegames.io/games/2024/more2/nova-craft/index.html"
+    "iframeUrl": "https://cloud.onlinegames.io/games/2024/more2/nova-craft/index.html",
+    "description": "Explore, build, and survive in this block-based sandbox world. Nova Craft offers a creative experience where your imagination is the only limit.",
+    "tags": ["sandbox", "creative", "survival"]
   },
   {
     "id": "dublix",
     "title": "Dublix",
     "thumbnail": "https://www.onlinegames.io/media/posts/1126/responsive/dublix-lg.webp",
-    "iframeUrl": "https://cloud.onlinegames.io/games/2025/unity4/dublix/game-og.html"
+    "iframeUrl": "https://cloud.onlinegames.io/games/2025/unity4/dublix/game-og.html",
+    "description": "A challenging puzzle game where you must navigate complex levels and solve intricate riddles. Perfect for players who love a good brain teaser.",
+    "tags": ["puzzle", "logic", "brain"]
   },
   {
     "id": "basket-random",
     "title": "Basket Random",
     "thumbnail": "https://www.onlinegames.io/media/posts/651/responsive/Basket-Random-lg.jpg",
-    "iframeUrl": "https://files.twoplayergames.org/files/games/other/Basket_Random/index.html"
+    "iframeUrl": "https://files.twoplayergames.org/files/games/other/Basket_Random/index.html",
+    "description": "Experience basketball like never before with random physics and unpredictable players. One button is all you need for this hilarious sports game!",
+    "tags": ["sports", "2 player", "physics"]
   },
   {
     "id": "escape-tsunami",
     "title": "Escape Tsunami",
-    "thumbnail": "https://images.unsplash.com/photo-1502933691298-84fa146c07a8?auto=format&fit=crop&q=80&w=400",
-    "iframeUrl": "https://files.twoplayergames.org/files/games/h1/tsunami-brainrots-online-v01e/index.html"
+    "thumbnail": "https://images.twoplayergames.org/files/games/other/escape-tsunami-for-brainrots.jpg",
+    "iframeUrl": "https://files.twoplayergames.org/files/games/h1/tsunami-brainrots-online-v01e/index.html",
+    "description": "Run for your life as a massive tsunami chases you down. Jump over obstacles and collect power-ups to stay ahead of the wave in this intense runner.",
+    "tags": ["action", "runner", "survival"]
   },
   {
     "id": "build-an-aquapark",
     "title": "Build an Aquapark",
-    "thumbnail": "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80&w=400",
-    "iframeUrl": "https://www.twoplayergames.org/gameframe/build-an-aquapark"
+    "thumbnail": "https://images.twoplayergames.org/files/games/other/build-and-aquapark.jpg",
+    "iframeUrl": "https://www.twoplayergames.org/gameframe/build-an-aquapark",
+    "description": "Design and manage your very own water park. Build thrilling slides, attract visitors, and create the ultimate summer destination!",
+    "tags": ["simulation", "management", "casual"]
   }
 ]

@@ -285,6 +285,40 @@ nav a:hover {
     font-size: 0.8rem;
 }
 
+/* Star Rating */
+.star-rating {
+    display: flex;
+    gap: 4px;
+    color: #fbbf24;
+    font-size: 0.85rem;
+}
+
+.star-rating.interactive i {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star-rating.interactive i:hover {
+    transform: scale(1.2);
+}
+
+.star-rating i.fas {
+    color: #fbbf24;
+}
+
+.star-rating i.far {
+    color: #4b5563;
+}
+
+.card-info .star-rating {
+    margin-bottom: 6px;
+}
+
+.stat .star-rating {
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
 /* Grid */
 .section-header {
     display: flex;
@@ -302,6 +336,43 @@ nav a:hover {
     font-style: italic;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 6px 15px;
+    border-radius: 50px;
+    color: var(--text-muted);
+}
+
+.sort-container i {
+    font-size: 0.8rem;
+}
+
+.sort-container select {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+}
+
+.sort-container select option {
+    background: var(--card-bg);
+    color: var(--text);
+}
+
 .accent {
     width: 6px;
     height: 30px;
@@ -312,6 +383,31 @@ nav a:hover {
 .filters {
     display: flex;
     gap: 10px;
+    align-items: center;
+}
+
+.category-dropdown {
+    position: relative;
+}
+
+.filter-select {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.filter-select:hover {
+    background: var(--accent);
+    color: black;
+    border-color: var(--accent);
 }
 
 .filter-btn {
@@ -438,10 +534,68 @@ nav a:hover {
     transform: scale(1.05);
 }
 
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 5;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.favorite-btn.active {
+    color: #ff4757;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #ff4757;
+}
+
+.favorite-btn i {
+    font-size: 0.9rem;
+}
+
+#fav-filter-btn i {
+    margin-right: 5px;
+    color: #ff4757;
+}
+
 .game-card h3 {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 2px;
+}
+
+.game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.game-tags .tag {
+    font-size: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .game-card p {

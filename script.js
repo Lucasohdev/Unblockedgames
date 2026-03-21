@@ -8,25 +8,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-btn');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const logoBtn = document.getElementById('logo-btn');
+    const playerStarRating = document.getElementById('player-star-rating');
+    const sortSelect = document.getElementById('sort-select');
+    const categorySelect = document.getElementById('category-select');
+    const gameDescription = document.getElementById('game-description');
 
     let allGames = [];
+    let currentGameId = null;
+    let currentFilter = 'all';
 
     // Fetch games from JSON
     fetch('games.json')
         .then(response => response.json())
         .then(data => {
             allGames = data;
-            renderGames(allGames);
+            updateGames();
         })
         .catch(err => console.error('Error loading games:', err));
+
+    // Rating Logic
+    function getRating(gameId) {
+        const ratings = JSON.parse(localStorage.getItem('nexus-games-ratings') || '{}');
+        return ratings[gameId] || 0;
+    }
+
+    function setRating(gameId, rating) {
+        const ratings = JSON.parse(localStorage.getItem('nexus-games-ratings') || '{}');
+        ratings[gameId] = rating;
+        localStorage.setItem('nexus-games-ratings', JSON.stringify(ratings));
+        updateGames(); // Refresh grid to show new rating
+    }
+
+    // Favorites Logic
+    function getFavorites() {
+        return JSON.parse(localStorage.getItem('nexus-games-favorites') || '[]');
+    }
+
+    function isFavorite(gameId) {
+        return getFavorites().includes(gameId);
+    }
+
+    function toggleFavorite(gameId) {
+        let favorites = getFavorites();
+        if (favorites.includes(gameId)) {
+            favorites = favorites.filter(id => id !== gameId);
+        } else {
+            favorites.push(gameId);
+        }
+        localStorage.setItem('nexus-games-favorites', JSON.stringify(favorites));
+        updateGames();
+    }
+
+    function updateStars(container, rating) {
+        const stars = container.querySelectorAll('i');
+        stars.forEach(star => {
+            const starRating = parseInt(star.getAttribute('data-rating'));
+            if (starRating <= rating) {
+                star.className = 'fas fa-star';
+            } else {
+                star.className = 'far fa-star';
+            }
+        });
+    }
 
     function renderGames(games) {
         gamesGrid.innerHTML = '';
         if (games.length === 0) {
-            gamesGrid.innerHTML = '<div class="no-results">No games found matching your search.</div>';
+            gamesGrid.innerHTML = '<div class="no-results">No games found matching your criteria.</div>';
             return;
         }
         games.forEach(game => {
+            const rating = getRating(game.id);
+            const favorite = isFavorite(game.id);
             const card = document.createElement('div');
             card.className = 'game-card';
             card.innerHTML = `
@@ -38,15 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button class="overlay-fs-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
                         </div>
                     </div>
+                    <button class="favorite-btn ${favorite ? 'active' : ''}" title="${favorite ? 'Remove from Favorites' : 'Add to Favorites'}">
+                        <i class="${favorite ? 'fas' : 'far'} fa-heart"></i>
+                    </button>
                 </div>
-                <h3>${game.title}</h3>
-                <p>Unblocked • Web</p>
+                <div class="card-info">
+                    <h3>${game.title}</h3>
+                    <div class="game-tags">
+                        ${(game.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="star-rating">
+                        ${[1, 2, 3, 4, 5].map(i => `<i class="${i <= rating ? 'fas' : 'far'} fa-star"></i>`).join('')}
+                    </div>
+                    <p>Unblocked • Web</p>
+                </div>
             `;
             
             // Main card click opens game normally
             card.addEventListener('click', (e) => {
-                // If the fullscreen button was clicked, don't trigger the card's main click
-                if (e.target.closest('.overlay-fs-btn')) return;
+                // If the fullscreen button or favorite button was clicked, don't trigger the card's main click
+                if (e.target.closest('.overlay-fs-btn') || e.target.closest('.favorite-btn')) return;
                 openGame(game);
             });
 
@@ -57,16 +121,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 openGame(game, true);
             });
 
+            // Favorite button click
+            const favBtn = card.querySelector('.favorite-btn');
+            favBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFavorite(game.id);
+            });
+
             gamesGrid.appendChild(card);
         });
     }
 
+    function updateGames() {
+        const query = searchInput.value.toLowerCase();
+        const sortType = sortSelect.value;
+
+        // 1. Filter by search query
+        let filtered = allGames.filter(game => 
+            game.title.toLowerCase().includes(query) || 
+            (game.tags && game.tags.some(tag => tag.toLowerCase().includes(query)))
+        );
+
+        // 2. Filter by category/tag (if not 'all')
+        if (currentFilter === 'favorites') {
+            filtered = filtered.filter(game => isFavorite(game.id));
+        } else if (currentFilter !== 'all') {
+            filtered = filtered.filter(game => 
+                (game.tags && game.tags.some(tag => tag.toLowerCase() === currentFilter)) ||
+                game.title.toLowerCase().includes(currentFilter)
+            );
+        }
+
+        // 3. Sort
+        if (sortType === 'title-az') {
+            filtered.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (sortType === 'title-za') {
+            filtered.sort((a, b) => b.title.localeCompare(a.title));
+        } else if (sortType === 'rating-high') {
+            filtered.sort((a, b) => getRating(b.id) - getRating(a.id));
+        } else if (sortType === 'rating-low') {
+            filtered.sort((a, b) => getRating(a.id) - getRating(b.id));
+        }
+
+        renderGames(filtered);
+    }
+
     function openGame(game, autoFullscreen = false) {
+        currentGameId = game.id;
         gameFrame.src = game.iframeUrl;
         currentGameTitle.textContent = game.title;
+        gameDescription.textContent = game.description || 'Play unblocked on Nexus Games. Instant browser play, no downloads required.';
         gamePlayer.classList.remove('hidden');
         hero.classList.add('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Update player stars
+        updateStars(playerStarRating, getRating(game.id));
 
         if (autoFullscreen) {
             // Small delay to ensure iframe is loaded/visible before requesting fullscreen
@@ -75,6 +185,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         }
     }
+
+    // Handle player star clicks
+    playerStarRating.addEventListener('click', (e) => {
+        const star = e.target.closest('i');
+        if (star && currentGameId) {
+            const rating = parseInt(star.getAttribute('data-rating'));
+            setRating(currentGameId, rating);
+            updateStars(playerStarRating, rating);
+        }
+    });
 
     function triggerFullscreen() {
         const player = document.getElementById('game-player');
@@ -115,15 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Search functionality
-    function handleSearch() {
-        const query = searchInput.value.toLowerCase();
-        const filtered = allGames.filter(game => 
-            game.title.toLowerCase().includes(query)
-        );
-        renderGames(filtered);
-    }
+    searchInput.addEventListener('input', updateGames);
 
-    searchInput.addEventListener('input', handleSearch);
+    // Sort functionality
+    sortSelect.addEventListener('change', updateGames);
+
+    // Category dropdown functionality
+    categorySelect.addEventListener('change', () => {
+        currentFilter = categorySelect.value;
+        // Deactivate all buttons if a specific category is selected from dropdown
+        // except if it's 'all'
+        filterBtns.forEach(b => b.classList.remove('active'));
+        if (currentFilter === 'all') {
+            filterBtns[0].classList.add('active');
+        }
+        updateGames();
+    });
 
     // Filter functionality (basic)
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -132,17 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            const filter = btn.textContent.toLowerCase();
-            if (filter === 'all') {
-                renderGames(allGames);
-            } else {
-                // Since we don't have categories in JSON yet, we'll just show all for now
-                // or we could filter by title if it contains the category name
-                const filtered = allGames.filter(game => 
-                    game.title.toLowerCase().includes(filter)
-                );
-                renderGames(filtered);
-            }
+            // Reset category dropdown when a button is clicked
+            categorySelect.value = 'all';
+            
+            // Use innerText and trim to get clean text even with icons
+            currentFilter = btn.innerText.trim().toLowerCase();
+            updateGames();
         });
     });
 
@@ -150,7 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
     logoBtn.addEventListener('click', () => {
         closeGame();
         searchInput.value = '';
-        renderGames(allGames);
+        sortSelect.value = 'default';
+        categorySelect.value = 'all';
+        currentFilter = 'all';
+        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns[0].classList.add('active');
+        updateGames();
     });
 
     fullscreenBtn.addEventListener('click', triggerFullscreen);

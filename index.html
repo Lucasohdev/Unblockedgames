@@ -54,6 +54,16 @@
                 </div>
                 <div class="game-stats">
                     <div class="stat">
+                        <span class="label">Rating</span>
+                        <div class="star-rating interactive" id="player-star-rating">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    <div class="stat">
                         <span class="label">Players</span>
                         <span class="value">1.2k+</span>
                     </div>
@@ -69,10 +79,31 @@
         <section id="games-section">
             <div class="section-header">
                 <h2><span class="accent"></span> All Games</h2>
-                <div class="filters">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Action</button>
-                    <button class="filter-btn">Puzzle</button>
+                <div class="header-controls">
+                    <div class="sort-container">
+                        <i class="fas fa-sort-amount-down"></i>
+                        <select id="sort-select">
+                            <option value="default">Sort By</option>
+                            <option value="title-az">Title (A-Z)</option>
+                            <option value="title-za">Title (Z-A)</option>
+                            <option value="rating-high">Rating (High-Low)</option>
+                            <option value="rating-low">Rating (Low-High)</option>
+                        </select>
+                    </div>
+                    <div class="filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn" id="fav-filter-btn"><i class="fas fa-heart"></i> Favorites</button>
+                        <div class="category-dropdown">
+                            <select id="category-select" class="filter-select">
+                                <option value="all">More Categories</option>
+                                <option value="action">Action</option>
+                                <option value="sports">Sports</option>
+                                <option value="puzzle">Puzzle</option>
+                                <option value="arcade">Arcade</option>
+                                <option value="physics">Physics</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="games-grid" id="games-grid">
