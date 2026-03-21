@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderGames(games) {
         gamesGrid.innerHTML = '';
+        if (games.length === 0) {
+            gamesGrid.innerHTML = '<div class="no-results">No games found matching your search.</div>';
+            return;
+        }
         games.forEach(game => {
             const card = document.createElement('div');
             card.className = 'game-card';
@@ -111,16 +115,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Search functionality
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
+    function handleSearch() {
+        const query = searchInput.value.toLowerCase();
         const filtered = allGames.filter(game => 
             game.title.toLowerCase().includes(query)
         );
         renderGames(filtered);
+    }
+
+    searchInput.addEventListener('input', handleSearch);
+
+    // Filter functionality (basic)
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.textContent.toLowerCase();
+            if (filter === 'all') {
+                renderGames(allGames);
+            } else {
+                // Since we don't have categories in JSON yet, we'll just show all for now
+                // or we could filter by title if it contains the category name
+                const filtered = allGames.filter(game => 
+                    game.title.toLowerCase().includes(filter)
+                );
+                renderGames(filtered);
+            }
+        });
     });
 
     closeBtn.addEventListener('click', closeGame);
-    logoBtn.addEventListener('click', closeGame);
+    logoBtn.addEventListener('click', () => {
+        closeGame();
+        searchInput.value = '';
+        renderGames(allGames);
+    });
 
     fullscreenBtn.addEventListener('click', triggerFullscreen);
 });

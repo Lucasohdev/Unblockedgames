@@ -338,6 +338,18 @@ nav a:hover {
     gap: 25px;
 }
 
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
 .game-card {
     cursor: pointer;
     transition: transform 0.3s;
@@ -348,8 +360,8 @@ nav a:hover {
 }
 
 .thumb-container {
-    aspect-ratio: 4/3;
-    border-radius: 16px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
     border: 1px solid var(--border);
@@ -359,7 +371,7 @@ nav a:hover {
 .thumb-container img {
     width: 100%;
     height: 100%;
-    object-cover: cover;
+    object-fit: cover;
     transition: transform 0.5s;
 }
 
