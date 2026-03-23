@@ -62,5 +62,29 @@
     "iframeUrl": "https://www.twoplayergames.org/gameframe/build-an-aquapark",
     "description": "Design and manage your very own water park. Build thrilling slides, attract visitors, and create the ultimate summer destination!",
     "tags": ["simulation", "management", "casual"]
+  },
+  {
+    "id": "draw-the-bridge",
+    "title": "Draw The Bridge",
+    "thumbnail": "https://play-lh.googleusercontent.com/673O7l5m7-dy8-V8c2W6t2rQzxf9i5LO8BL_VNWteDUFV3RzzVt9fwYSN0e3euDt4L7A",
+    "iframeUrl": "https://www.onlinegames.io/games/2021/4/draw-the-bridge/index.html",
+    "description": "Use your creativity to draw bridges and help vehicles reach their destination. A fun physics-based puzzle game that tests your engineering skills!",
+    "tags": ["puzzle", "physics", "drawing"]
+  },
+  {
+    "id": "subway-surfers",
+    "title": "Subway Surfers",
+    "thumbnail": "https://cdnb.artstation.com/p/assets/images/images/040/799/993/large/celine-j-icon-1024-ios.jpg?1629908161",
+    "iframeUrl": "https://www.onlinegames.io/games/2022/unity/bus-subway-runner/index.html",
+    "description": "The world-famous endless runner! Dash as fast as you can, dodge oncoming trains, and help Jake, Tricky & Fresh escape from the grumpy Inspector and his dog.",
+    "tags": ["action", "runner", "arcade"]
+  },
+  {
+    "id": "jeep-driver",
+    "title": "Jeep Driver",
+    "thumbnail": "https://play-lh.googleusercontent.com/SF244ODWMoY5TRRub41wlsxqHkFuWS_t1nbnWNwpzytC3EJqUoFrNGdBzeL9x9EkQDs",
+    "iframeUrl": "https://cloud.onlinegames.io/games/2021/1/jeep-driver/index-og.html",
+    "description": "Take control of a powerful Jeep and navigate through challenging off-road terrains. Master the physics and reach the finish line in this exciting driving game.",
+    "tags": ["driving", "physics", "offroad"]
   }
 ]
